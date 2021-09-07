@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('name')->unique();
             $table->text('description');
             $table->float('price', 10, 2, true);
-            $table->foreignId('product_category_id');
+            $table->foreignId('product_category_id')->references('id')->on('product_categories');
             $table->timestamps();
         });
     }
