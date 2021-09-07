@@ -46,3 +46,11 @@ $router->group(['namespace' => 'Products'], function () use ($router) {
         $router->delete('/{id}', 'ProductsController@destroy');
     });
 });
+
+$router->group(['prefix' => 'stocks'], function () use ($router) {
+    $router->get('/', 'StocksController@index');
+    $router->get('/{id}', 'StocksController@show');
+    $router->post('/', 'StocksController@store');
+    $router->put('/{id}', 'StocksController@update');
+    $router->delete('/{id}', 'StocksController@destroy');
+});
