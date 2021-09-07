@@ -28,3 +28,21 @@ $router->group(['prefix' => 'users'], function () use ($router) {
     $router->put('/{id}', 'UsersController@update');
     $router->delete('/{id}', 'UsersController@destroy');
 });
+
+$router->group(['namespace' => 'Products'], function () use ($router) {
+    $router->group(['prefix' => 'product-categories'], function () use ($router) {
+        $router->get('/', 'ProductCategoriesController@index');
+        $router->get('/{id}', 'ProductCategoriesController@show');
+        $router->post('/', 'ProductCategoriesController@store');
+        $router->put('/{id}', 'ProductCategoriesController@update');
+        $router->delete('/{id}', 'ProductCategoriesController@destroy');
+    });
+
+    $router->group(['prefix' => 'products'], function () use ($router) {
+        $router->get('/', 'ProductsController@index');
+        $router->get('/{id}', 'ProductsController@show');
+        $router->post('/', 'ProductsController@store');
+        $router->put('/{id}', 'ProductsController@update');
+        $router->delete('/{id}', 'ProductsController@destroy');
+    });
+});
