@@ -13,12 +13,14 @@
 |
 */
 
+use Illuminate\Support\Str;
+
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
 $router->get('/key', function () use ($router) {
-    return \Illuminate\Support\Str::random(32);
+    return Str::random(32);
 });
 
 $router->group(['prefix' => 'users'], function () use ($router) {
@@ -53,4 +55,10 @@ $router->group(['prefix' => 'stocks'], function () use ($router) {
     $router->post('/', 'StocksController@store');
     $router->put('/{id}', 'StocksController@update');
     $router->delete('/{id}', 'StocksController@destroy');
+});
+
+$router->group(['prefix' => 'sales'], function () use ($router) {
+    $router->get('/', 'SalesController@index');
+    $router->get('/{id}', 'SalesController@show');
+    $router->post('/', 'SalesController@store');
 });
